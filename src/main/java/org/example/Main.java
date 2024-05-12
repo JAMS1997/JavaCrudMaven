@@ -11,18 +11,13 @@ import java.sql.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws SQLException {
+        System.out.println("--------Listando todos------");
+        //Tipo generico<tipoDato> instancia = Instancia a la que pertenece
+        Repository<Employee> repository = new EmployeeRepository();
+        repository.findAll().forEach(System.out::println);
 
-        try (Connection myConn = DataBaseConnection.getInstance()){
-            Repository<Employee> repository = new EmployeeRepository();
-
-            System.out.println("------ Insertando un empleado --------");
-            Employee employee = new Employee();
-
-            System.out.println("-------Empleado eliminado--------");
-            repository.findAll().forEach(System.out::println);
-            repository.delete(8);
-        }
-
+        System.out.println("----- Buscando por ID -----");
+        System.out.println(repository.getById(10));
 
     }
 }
